@@ -4,7 +4,10 @@
   (:export :hosts-db
            :*automatically-accept-keys*
            :pass
-           :with-connection))
+           :with-connection
+           :with-command
+           :download-file
+           :upload-file))
 (in-package :trivial-ssh)
 
 ;;; Hosts database
@@ -67,3 +70,30 @@
           ,auth
           :hosts-db (namestring ,hosts-db-path) :port ,port)
        ,@body)))
+
+;;; Command execution
+
+(defmacro with-command ((conn iostream command) &rest body)
+  `(libssh2:with-execute* (,iostream ,conn ,command)
+     ,@body))
+
+;;; SCP file transfers
+
+(defun download-file (conn local remote
+                      &key (if-exists :supersede) (if-does-not-exist :create))
+  (libssh2:with-scp-input (download-stream conn (namestring remote) stat)
+    (with-open-file (file-stream (namestring local)
+                                 :direction :output
+                                 :if-exists if-exists
+                                 :if-does-not-exist if-does-not-exist
+                                 :element-type '(unsigned-byte 8))
+      (cl-fad:copy-stream download-stream file-stream))))
+
+(defun upload-file (conn local remote)
+  (with-open-file (file-stream (namestring local)
+                               :direction :input
+                               :element-type '(unsigned-byte 8))
+    (libssh2:with-scp-output (upload-stream conn
+                                            (namestring remote)
+                                            (file-length file-stream))
+      (cl-fad:copy-stream file-stream upload-stream))))

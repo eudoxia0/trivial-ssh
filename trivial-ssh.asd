@@ -2,7 +2,8 @@
   :version "0.1"
   :author "Fernando Borretti"
   :license "MIT"
-  :depends-on (:libssh2)
+  :depends-on (:libssh2
+               :cl-fad)
   :components ((:module "src"
                 :components
                 ((:file "trivial-ssh"))))
