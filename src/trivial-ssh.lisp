@@ -1,9 +1,11 @@
 (in-package :cl-user)
 (defpackage trivial-ssh
   (:use :cl)
+  (:nicknames :ssh)
   (:export :hosts-db
            :*automatically-accept-keys*
            :pass
+           :key
            :with-connection
            :with-command
            :download-file
@@ -49,6 +51,13 @@
 (defun pass (username password)
   "Authenticate using a username and password"
   (libssh2:make-password-auth username password))
+
+(defun key (username private-key-path)
+  (libssh2:make-publickey-auth username
+                               (namestring
+                                (make-pathname
+                                 :directory (pathname-directory private-key-path)))
+                               (pathname-name private-key-path)))
 
 (defmacro with-connection ((conn host auth
                             &optional (hosts-db-path +default-hosts-db+)
