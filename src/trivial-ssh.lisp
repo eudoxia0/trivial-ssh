@@ -6,6 +6,7 @@
            :*automatically-accept-keys*
            :pass
            :key
+           :agent
            :with-connection
            :with-command
            :download-file
@@ -58,6 +59,9 @@
                                 (make-pathname
                                  :directory (pathname-directory private-key-path)))
                                (pathname-name private-key-path)))
+
+(defun agent (username)
+  (libssh2:make-agent-auth username))
 
 (defmacro with-connection ((conn host auth
                             &optional (hosts-db-path +default-hosts-db+)
