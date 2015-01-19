@@ -3,8 +3,7 @@
   :author "Fernando Borretti"
   :license "MIT"
   :homepage "https://github.com/eudoxia0/trivial-ssh"
-  :depends-on (:libssh2
-               :cl-fad)
+  :depends-on (:libssh2)
   :components ((:module "src"
                 :components
                 ((:file "trivial-ssh"))))
