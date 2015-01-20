@@ -1,6 +1,4 @@
-;; -*- mode: lisp; tab-width: 4; ident-tabs-mode: nil -*-
-
-(in-package libssh2)
+(in-package :libssh2)
 
 (defmacro result-or-error (&body body)
   `(let ((results (multiple-value-list (progn ,@body)))

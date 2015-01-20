@@ -1,6 +1,4 @@
-;; -*- mode: lisp; tab-width: 4; ident-tabs-mode: nil -*-
-
-(in-package libssh2)
+(in-package :libssh2)
 
 (defvar *session* nil)
 
@@ -50,4 +48,3 @@
                      (loop for password in passwords
                         collect (make-password-auth login
                                                     password)))))))))
-
