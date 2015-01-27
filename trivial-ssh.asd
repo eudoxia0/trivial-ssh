@@ -1,8 +1,11 @@
 (defsystem trivial-ssh
-  :version "0.1"
-  :author "Fernando Borretti"
+  :author "Fernando Borretti <eudoxiahp@gmail.com>"
+  :maintainer "Fernando Borretti <eudoxiahp@gmail.com>"
   :license "MIT"
+  :version "0.1"
   :homepage "https://github.com/eudoxia0/trivial-ssh"
+  :bug-tracker "https://github.com/eudoxia0/trivial-ssh/issues"
+  :source-control (:git "git@github.com:eudoxia0/trivial-ssh.git")
   :depends-on (:trivial-ssh-libssh2)
   :components ((:module "src"
                 :components
