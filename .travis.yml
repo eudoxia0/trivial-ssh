@@ -10,7 +10,7 @@ install:
   # Install the SSH server
   - sudo apt-get install openssh-server
   # Install libssh2
-  - sudo apt-get install libssh2
+  - sudo apt-get install libssh2-1
 
 script:
   - cl -e '(ql:quickload :fiveam)'
