@@ -1,4 +1,8 @@
-# trivial-ssh: Simple SSH/SCP library for Common Lisp
+# trivial-ssh
+
+[![Build Status](https://travis-ci.org/eudoxia0/trivial-ssh.svg?branch=master)](https://travis-ci.org/eudoxia0/trivial-ssh)
+
+A simple SSH/SCP library for Common Lisp.
 
 # Usage
 
