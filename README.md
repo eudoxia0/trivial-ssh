@@ -6,6 +6,10 @@ A simple SSH/SCP library for Common Lisp.
 
 # Usage
 
+## Installation
+
+Make sure you have `libssh2` installed on your system. Then simply load it with `(ql:quickload :trivial-ssh)`.
+
 ## Overview
 
 ~~~lisp
