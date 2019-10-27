@@ -109,4 +109,5 @@
     (libssh2:with-scp-output (upload-stream conn
                                             (namestring remote)
                                             (file-length file-stream))
-      (uiop:copy-stream-to-stream file-stream upload-stream))))
+      (uiop:copy-stream-to-stream file-stream upload-stream
+				  :element-type '(unsigned-byte 8)))))
