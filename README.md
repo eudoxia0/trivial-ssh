@@ -13,8 +13,8 @@ A simple SSH/SCP library for Common Lisp.
   (ssh:with-command (conn iostream "ls -a")
     ;; Write or read to/from the iostream
     )
-  (ssh:download-file #p"/remote/file" #p"/local/file")
-  (ssh:upload-file #p"/local/file" #p"/remote-file"))
+  (ssh:download-file conn #p"/remote/file" #p"/local/file")
+  (ssh:upload-file conn #p"/local/file" #p"/remote-file"))
 ~~~
 
 # License
