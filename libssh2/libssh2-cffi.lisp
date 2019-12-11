@@ -15,6 +15,7 @@
 
 (define-foreign-library libssh2
   (:darwin "libssh2.dylib")
+  (:openbsd "libssh2.so")
   (:unix  "libssh2.so.1")
   (:win32 "libssh2-1.dll")
   (t (:default "libssh2")))
