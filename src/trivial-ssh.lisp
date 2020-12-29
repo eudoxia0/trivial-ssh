@@ -53,12 +53,13 @@
   "Authenticate using a username and password"
   (libssh2:make-password-auth username password))
 
-(defun key (username private-key-path)
+(defun key (username private-key-path &optional (password ""))
   (libssh2:make-publickey-auth username
                                (namestring
                                 (make-pathname
                                  :directory (pathname-directory private-key-path)))
-                               (pathname-name private-key-path)))
+                               (pathname-name private-key-path)
+                               password))
 
 (defun agent (username)
   (libssh2:make-agent-auth username))
