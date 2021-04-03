@@ -53,12 +53,13 @@
   "Authenticate using a username and password"
   (libssh2:make-password-auth username password))
 
-(defun key (username private-key-path)
+(defun key (username private-key-path &optional (password ""))
   (libssh2:make-publickey-auth username
                                (namestring
                                 (make-pathname
                                  :directory (pathname-directory private-key-path)))
-                               (pathname-name private-key-path)))
+                               (pathname-name private-key-path)
+                               password))
 
 (defun agent (username)
   (libssh2:make-agent-auth username))
@@ -100,7 +101,7 @@
                                  :if-exists if-exists
                                  :if-does-not-exist if-does-not-exist
                                  :element-type '(unsigned-byte 8))
-      (uiop:copy-stream-to-stream download-stream file-stream))))
+      (fad:copy-stream download-stream file-stream))))
 
 (defun upload-file (conn local remote)
   (with-open-file (file-stream (namestring local)
@@ -109,5 +110,4 @@
     (libssh2:with-scp-output (upload-stream conn
                                             (namestring remote)
                                             (file-length file-stream))
-      (uiop:copy-stream-to-stream file-stream upload-stream
-				  :element-type '(unsigned-byte 8)))))
+      (fad:copy-stream file-stream upload-stream))))
