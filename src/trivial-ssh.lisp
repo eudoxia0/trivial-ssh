@@ -101,7 +101,7 @@
                                  :if-exists if-exists
                                  :if-does-not-exist if-does-not-exist
                                  :element-type '(unsigned-byte 8))
-      (uiop:copy-stream-to-stream download-stream file-stream))))
+      (fad:copy-stream download-stream file-stream))))
 
 (defun upload-file (conn local remote)
   (with-open-file (file-stream (namestring local)
@@ -110,5 +110,4 @@
     (libssh2:with-scp-output (upload-stream conn
                                             (namestring remote)
                                             (file-length file-stream))
-      (uiop:copy-stream-to-stream file-stream upload-stream
-				  :element-type '(unsigned-byte 8)))))
+      (fad:copy-stream file-stream upload-stream))))
